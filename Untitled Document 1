@@ -1,0 +1,11 @@
+t.test(Groupname~avgInputRes,subset(ofc2,AhpStep==100 & avgInputRes < 250))
+bargraph.CI(x.factor=Groupname,response=avgInputRes,data=subset(ofc2,avgInputRes<250),group=Groupname)
+bargraph.CI(x.factor=Groupname,response=avgInputRes,data=subset(ofc2, AhpStep=475 & Select==1),group=Groupname)
+
+ qp=qplot(AhpStep,mAhp/avgmTau,data=subset(ofc2),geom=c("point"),fill=Groupname)
+
+ aggregate(avgInputRes~Groupname,data=subset(ofc2,Select==1 & AhpStep==475),FUN=function(x)sum(x>0,na.rm=T))  Groupname avgInputRes
+
+myPalette <- c("#000000", "#E69F00")
+ggplot(hc2, aes(x=AhpStep, y=mAhp, fill=Groupname)) + geom_point() + 
+    scale_fill_manual(values=myPalette)+scale_fill_hue(c=45, l=80)

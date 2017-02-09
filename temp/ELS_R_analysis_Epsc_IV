@@ -1,0 +1,174 @@
+# This is for analysis and ploting of ELS data in R
+rm(list=ls())
+library("ggplot2")
+library("sciplot")
+library("stringr")
+library("plyr")
+library("gdata")
+	#----------------------- pre70
+pre70 = read.csv('~/DATA/ELS/ELS_Pre70_new.csv',header=TRUE,stringsAsFactors=FALSE);
+	# remove the column "X"
+pre70=pre70[,colnames(pre70)[!grepl(colnames(pre70),pattern="X")]]  
+avgpre70=ddply(pre70, .(CellID), summarize, FileName=unique(FileName),GroupName=unique(GroupName),BrainRegion=unique(BrainRegion),
+ExpDate=unique(ExpDate), BirthDate=unique(BirthDate), TreatTime=mean(TreatTime), RecTime=mean(RecTime), VRest = mean(VRest),
+SeriesRes = mean(SeriesRes), InputRes=mean(InputRes), mTau=mean(mTau), Sweep=mean(Sweep),VCLamp=mean(VClamp), 
+Peak=mean(Peak),RiseTime=mean(RiseTime), Tail=mean(Tail), TailArea=mean(TailArea),TotalArea=mean(TotalArea))
+	#----------------------- pre40
+pre40 = read.csv('~/DATA/ELS/ELS_Pre40_new.csv',header=TRUE,stringsAsFactors=FALSE);
+pre40=pre40[,colnames(pre40)[!grepl(colnames(pre40),pattern="X")]]
+avgpre40=ddply(pre40, .(CellID), summarize, FileName=unique(FileName),GroupName=unique(GroupName),BrainRegion=unique(BrainRegion),
+ExpDate=unique(ExpDate), BirthDate=unique(BirthDate), TreatTime=mean(TreatTime), RecTime=mean(RecTime), VRest = mean(VRest),
+SeriesRes = mean(SeriesRes), InputRes=mean(InputRes), mTau=mean(mTau), Sweep=mean(Sweep),VCLamp=mean(VClamp), 
+Peak=mean(Peak),RiseTime=mean(RiseTime), Tail=mean(Tail), TailArea=mean(TailArea),TotalArea=mean(TotalArea))
+	#----------------------- post70
+post70 = read.csv('~/DATA/ELS/ELS_Post70_new.csv',header=TRUE,stringsAsFactors=FALSE);
+post70=post70[,colnames(post70)[!grepl(colnames(post70),pattern="X")]]
+avgpost70=ddply(post70, .(CellID), summarize, FileName=unique(FileName),GroupName=unique(GroupName),BrainRegion=unique(BrainRegion),
+ExpDate=unique(ExpDate), BirthDate=unique(BirthDate), TreatTime=mean(TreatTime), RecTime=mean(RecTime), VRest = mean(VRest),
+SeriesRes = mean(SeriesRes), InputRes=mean(InputRes), mTau=mean(mTau), Sweep=mean(Sweep),VCLamp=mean(VClamp), 
+Peak=mean(Peak),RiseTime=mean(RiseTime), Tail=mean(Tail), TailArea=mean(TailArea),TotalArea=mean(TotalArea))
+colnames(avgpost70)[2:18]=paste(colnames(avgpost70),rep(".post70",length(colnames(avgpre70))),sep="")[2:18]
+	#----------------------Merge pre70, pre40
+els = merge(avgpre70,avgpre40,by="CellID",suffixes=c(".pre70",".pre40"))
+	#----------------------Merge with post70
+els = merge(els,avgpost70,all.x=TRUE,by="CellID")
+	#---------------------Create the additional factors for two factor ANOVA
+factors=str_split_fixed(els$GroupName.pre70,"\\+",2)
+els = cbind(els,"Treat_invivo"=as.character(factors[,1]),"Treat_exvivo"=as.character(factors[,2]))
+	#----------------------Generate new variables
+els = cbind(els,"AmpRatio"=abs(els$Tail.pre40/els$Peak.pre70))
+els = cbind(els,"AreaRatio"=abs(els$TailArea.pre40/els$TotalArea.pre70))
+els = cbind(els,"PostPre"=abs(els$Peak.post70/els$Peak.pre70))
+expdate=strptime(els[,"ExpDate.pre70"],"%Y%m%d");
+birthdate=strptime(els[,"BirthDate.pre70"],"%Y%m%d");
+age = as.numeric(difftime(expdate,birthdate,units="days"))
+els = cbind(els,"Age"=age)
+treattime=strptime(els[,"TreatTime.pre70"],"%H%M");
+rectime=strptime(els[,"RecTime.pre70"],"%H%M");
+expdelay=as.numeric(difftime(rectime,treattime,units="mins"))/60
+els = cbind(els,"ExpDelay"=expdelay)
+
+#--------------------------Load IV files
+iv = read.csv('~/DATA/ELS/ELS_Epsc_IV_new.csv',header=TRUE,stringsAsFactors=FALSE);
+	# remove the column "X"
+iv = iv[,colnames(iv)[!grepl(colnames(iv),pattern="X")]] 
+# --- New df with Peak and Tail reversal
+avgiv = ddply(iv, .(CellID), summarize, FileName=unique(FileName),GroupName=unique(GroupName),BrainRegion=unique(BrainRegion),
+	ExpDate=unique(ExpDate), BirthDate=unique(BirthDate), VRest = mean(VRest),
+	PeakRev=mean(PeakRev), TailRev=mean(TailRev) )
+
+naiv = merge(els,avgiv,all.x=TRUE,by="CellID")
+
+naiv$GroupName = as.factor(naiv$GroupName)
+naiv$GroupName = reorder(naiv$GroupName, new.order = c("CTRL+VEH","CTRL+CORT","ELS+VEH","ELS+CORT"))
+#------------------------Select cells
+select = rep(1,nrow(naiv));
+naiv = cbind(naiv,"Select"=select)
+naiv[naiv[,"ExpDate.pre70"]>=20121123,"Select"]=0;
+naiv = naiv[naiv[,"Select"]==1,];
+	#---------------------Summary data for ploting
+stat.PkRev<-ddply(naiv, c("GroupName"), function(df) return(c(avg=mean(df$PeakRev,na.rm=TRUE), sem=se(df$PeakRev,na.rm=TRUE))))
+stat.PkRev = stat.PkRev[!is.na(stat.PkRev[,"GroupName"]),]
+stat.TlRev<-ddply(naiv, c("GroupName"), function(df) return(c(avg=mean(df$TailRev), sem=se(df$TailRev))))
+stat.TlRev = stat.TlRev[!is.na(stat.TlRev[,"GroupName"]),]
+
+stat.PkRev$GroupName = as.factor(stat.PkRev$GroupName)
+stat.PkRev$GroupName = reorder(stat.PkRev$GroupName, new.order = c("CTRL+VEH","CTRL+CORT","ELS+VEH","ELS+CORT"))
+
+#----------------------Statistics 2-way ANOVA
+anovaPkRev=(aov(PeakRev~Treat_invivo*Treat_exvivo,naiv))
+anovaTlRev=(aov(TailRev~Treat_invivo*Treat_exvivo,naiv))
+
+naiv = naiv[!is.na(naiv[,"GroupName"]),]
+
+#create the barplot component  IV Peak Rev
+plot.PkRev<-qplot(GroupName, avg, fill=factor(GroupName), data=(stat.PkRev), geom="bar", position="dodge")+
+		scale_y_continuous(name="Epsc Peak Reversal potential (mV) ")+scale_x_discrete(name="Groups")+guides(fill=FALSE)+
+		theme(axis.text.y = element_text(size=16, hjust=0.5,angle=0), axis.title.y = element_text(size=16, angle=90,vjust=0.25),
+			    axis.text.x  = element_text(angle=0, hjust=0.5, size=16,face="plain"), axis.title.x = element_text(size=15, angle=0,hjust= 0.5))+
+		scale_fill_manual("Groups", breaks = levels(factor(stat.PkRev$GroupName)), values= c("lightgrey","black","pink","red") )+
+		annotate(geom="text",x=0.5,y=35,label = "Main effect of ELS (p = 0.04)",size=5,fontface="plain",color="black",hjust=0)+
+		annotate(geom="text",x=0.5,y=33,label = "F(1,28) = 4.7, Two way ANOVA",size=5,fontface="plain",color="black",hjust=0)
+
+#add error bars
+#first, define the width of the dodge
+dodge <- position_dodge(width=0.9)  
+#now add the error bars to the plot
+#els.plot=els.plot+geom_errorbar(aes(ymax=avg+sem, ymin=avg-sem), data=els.stat,position="dodge")+
+plot.PkRev= plot.PkRev+geom_linerange(aes(ymax=avg+sem, ymin=avg-sem), position=dodge,size=1)#+theme_bw()
+#now add the data points to the plot
+plot.PkRev = plot.PkRev+layer(data=(naiv),mapping=aes(x=naiv$GroupName,y=PeakRev),
+		geom="point", width=1,size=3,color="#9999CC",position=position_jitter(w = 0.05, h = 0.05))
+#		theme(legend.title = element_text(colour="blue", size=12, face="bold",vjust=-1,angle=0))
+#		scale_color_discrete(name="")
+#		theme(axis.title.x = element_blank())
+plot.PkRev=plot.PkRev+theme(panel.background = element_rect(fill='white', colour='black'))
+#tiff("~/DATA/ELS/ELS_IV_Epsc_Peak_Rv",width=17,height=15,units="cm",compression=c("jpeg"),bg="white",res=300)
+#---------------------Summary data for ploting
+stat.naiv.PkRev <-ddply(naiv, c("GroupName.pre70"), function(df) return(c(avgPeakRev=mean(df$PeakRev), semPeakRev=se(df$PeakRev), sdevPeakRev=sd(df$PeakRev), NPeakRev = sum(df$PeakRev != 100,na.rm=TRUE))))
+#create the barplot component  IV Tail Rev
+plot.TlRev<-qplot(GroupName, avg, fill=factor(GroupName), data=(stat.TlRev), geom="bar", position="dodge")+
+		scale_y_continuous(name="Epsc Tail Reversal Potential (mV) ")+scale_x_discrete(name="Groups")+guides(fill=FALSE)+
+		theme(axis.text.y = element_text(size=16, hjust=0.5,angle=0), axis.title.y = element_text(size=16, angle=90,vjust=0.25),
+			    axis.text.x  = element_text(angle=0, hjust=0.5, size=16,face="plain"), axis.title.x = element_text(size=15, angle=0,hjust= 0.5))+
+		scale_fill_manual("Groups", breaks = levels(factor(stat.TlRev$GroupName)), values= c("lightgrey","black","pink","red") )+
+		annotate(geom="text",x=0.5,y=35,label = "Main effect of ELS (p = 0.15)",size=5,fontface="plain",color="black",hjust=0)+
+		annotate(geom="text",x=0.5,y=32.5,label = "F(1,28) = 2.18, Two way ANOVA",size=5,fontface="plain",color="black",hjust=0)
+
+#add error bars
+#first, define the width of the dodge
+dodge <- position_dodge(width=0.9)  
+#now add the error bars to the plot
+#els.plot=els.plot+geom_errorbar(aes(ymax=avg+sem, ymin=avg-sem), data=els.stat,position="dodge")+
+plot.TlRev= plot.TlRev+geom_linerange(aes(ymax=avg+sem, ymin=avg-sem), position=dodge,size=1)#+theme_bw()
+#now add the data points to the plot
+plot.TlRev = plot.TlRev+layer(data=(naiv),mapping=aes(x=naiv$GroupName,y=TailRev),
+		geom="point", width=1,size=3,color="#9999CC",position=position_jitter(w = 0.05, h = 0.05))
+#		theme(legend.title = element_text(colour="blue", size=12, face="bold",vjust=-1,angle=0))
+#		scale_color_discrete(name="")
+#		theme(axis.title.x = element_blank())
+plot.TlRev=plot.TlRev+theme(panel.background = element_rect(fill='white', colour='black'))
+#tiff("~/DATA/ELS/ELS_IV_Epsc_Tail_Rv",width=17,height=15,units="cm",compression=c("jpeg"),bg="white",res=300)
+	ivacell = iv[grepl("C220120611",iv[,"CellID"]),]
+ 	ivplot = qplot(VClamp,Peak,data=ivacell)+geom_point(width=1,size=3,color="blue")
+	ivplot = ivplot+layer(data=ivacell,mapping=aes(x=ivacell$VClamp,y=ivacell$Tail),
+		geom="point", width=1,size=3,color="red",position=position_jitter(w = 0.05, h = 0.05))+
+		theme(panel.grid.minor=element_blank(),panel.grid.major=element_blank())+
+		theme(axis.title.x = element_blank())+
+		theme(axis.title.x = element_text(face="plain", colour="black", size=18),axis.title.y = element_text(face="plain", colour="black", size=18),
+           	axis.text.x  = element_blank(),axis.text.y = element_blank())+
+		scale_y_continuous(name="Normalized Epsc Amplitude")+scale_x_continuous(name="Holding Potential (mV)")
+
+ivplot = ivplot+geom_hline(yintercept=0, colour="black", lwd=0.3) + 
+        	annotate("text", x = 10, y = -0.13, label = "10")+annotate("text", x = 30, y = -0.13, label = "30")+
+		annotate("text", x = -10, y = 0.13, label = "-10")+annotate("text", x = -30, y = 0.13, label = "-30")+
+		annotate("text", x = -50, y = 0.13, label = "-50")+annotate("text", x = -70, y = 0.13, label = "-70")+
+		annotate("text", x = -90, y = 0.13, label = "-90")
+
+ivplot = ivplot+geom_vline(xintercept=0, colour="black", lwd=0.3) + 
+        	annotate("text", x = -10, y = 1.25, label = "1.25")+annotate("text", x = -10, y = 0.75, label = "0.75")+
+		annotate("text", x = -10, y = -0.5, label = "-0.5")+annotate("text", x = -10, y = -1, label = "-1")+
+		annotate("text", x = -10, y = -1.5, label = "-1.5")+annotate("text", x = -10, y = -2, label = "-2")
+
+#tiff("~/DATA/ELS/ELS_IV_Sample",width=17,height=15,units="cm",compression=c("jpeg"),bg="white",res=300)		
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

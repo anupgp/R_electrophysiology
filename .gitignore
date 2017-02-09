@@ -1,0 +1,15 @@
+# Ignore data files will following extensions in all folders
+*.fig
+*.RData
+
+# Ignore data folder
+data/
+
+# Ignore private folder
+private/
+
+# Ignore working folder
+working/
+
+# Ignore files ending with ~
+*~

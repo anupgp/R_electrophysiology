@@ -1,0 +1,7 @@
+expdate=strptime(hc2[,"ExpDate"],"%Y%m%d");
+birthdate=strptime(hc2[,"BirthDate"],"%Y%m%d");
+age = as.numeric(difftime(expdate,birthdate,units="days"))
+treatendtime=strptime(hc2[,"TreatEndTime"],"%H%M");
+recstarttime=strptime(hc2[,"RecStartTime"],"%H%M");
+expdelay=as.numeric(difftime(recstarttime,treatendtime,units="mins"))/60
+hc3= cbind(hc2[,!grepl("X",colnames(hc2))],Age=age,ExpDelay=expdelay,stringsAsFactors=FALSE)

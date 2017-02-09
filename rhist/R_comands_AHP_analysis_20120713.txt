@@ -1,0 +1,11 @@
+CCofc = read.csv('~/AHP_OFC_Anup/ahpofcCC_20120713.csv',stringsAsFactors=FALSE)
+CVofc = read.csv('~/AHP_OFC_Anup/ahpofcCV_20120713.csv',stringsAsFactors=FALSE)
+ofc = rbind(CCofc,CVofc)
+CCpfc = read.csv('~/AHP_PFC/ahpplCC_20120712.csv',stringsAsFactors=FALSE)
+CVpfc = read.csv('~/AHP_PFC/ahpplCV_20120712.csv',stringsAsFactors=FALSE)
+pfc = rbind(CCpfc,CVpfc)
+
+jpeg('~/AHP_OFC_Anup/mAHP_OFC_Anup', quality = 100, bg = "white", res = 200, width = 15, height = 15, units = "cm")
+
+Clear console= ctrl -el
+

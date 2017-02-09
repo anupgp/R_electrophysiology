@@ -1,0 +1,18 @@
+rm(list=ls());
+library("sciplot")
+source("~/R/R_Scripts/runR2");
+CC = read.csv('~/DATA/AHP_OFC_Marloes/MAhp_OFC_CC.csv',header=TRUE,stringsAsFactors=FALSE);
+CV = read.csv('~/DATA/AHP_OFC_Marloes/MAhp_OFC_CV.csv',header=TRUE,stringsAsFactors=FALSE);
+CC = cbind(CC,Groupname="CC")
+CV = cbind(CV,Groupname="CV")
+CC=CC[,!grepl("X",colnames(CC))]
+CV=CV[,!grepl("X",colnames(CV))]
+Mofc = rbind(CV,CC);
+Mofc = Mofc[!is.na(Mofc[,"AhpStep"]),];
+Mofc2 = AvgColumnByFactor(Mofc,"InputRes","AhpStep","avgInputRes");
+Mofc2 = AvgColumnByFactor(Mofc2,"SeriesRes","AhpStep","avgSeriesRes");
+Mofc2 = AvgColumnByFactor(Mofc2,"mTau","AhpStep","avgmTau");
+Mofc2 = AvgColumnByFactor(Mofc2,"FSAmp","AhpStep","avgFSAmp");
+Mofc2 = AvgColumnByFactor(Mofc2,"FSThres","AhpStep","avgFSThres");
+Mofc2 = AvgColumnByFactor(Mofc2,"FSHWidth","AhpStep","avgFSHWidth");
+aggregate(formula = cbind(avgInputRes,avgSeriesRes,avgmTau,avgFSAmp,avgFSThres,avgFSHWidth) ~ Groupname, data = subset(Mofc2, AhpStep==0),FUN=function(x)c(MEAN=mean(x,na.rm=T),SEM=se(x,na.rm=T),N=sum(x>0))

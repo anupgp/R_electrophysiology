@@ -1,0 +1,36 @@
+rm(list=ls());
+source("~/R/runR2");
+CC = read.csv('~/DATA/AHP_OFC/AHP20120826_OFC_CC.csv',header=TRUE,stringsAsFactors=FALSE);
+CV = read.csv('~/DATA/AHP_OFC/AHP20120826_OFC_CV.csv',header=TRUE,stringsAsFactors=FALSE);
+CC=CC[,!grepl("X",colnames(CC))]
+CV=CV[,!grepl("X",colnames(CV))]
+ofc = rbind(CV,CC);
+ofc2 = AvgColumnByFactor(ofc,"InputRes","AhpStep","avgInputRes");
+ofc2 = AvgColumnByFactor(ofc2,"mTau","AhpStep","avgmTau");
+ofc2 = AvgColumnByFactor(ofc2,"VBase","AhpStep","avgVBase");
+expdate=strptime(ofc2[,"ExpDate"],"%Y%m%d");
+birthdate=strptime(ofc2[,"BirthDate"],"%Y%m%d");
+age = as.numeric(difftime(expdate,birthdate,units="days"))
+treatendtime=strptime(ofc2[,"TreatEndTime"],"%H%M");
+recstarttime=strptime(ofc2[,"RecStartTime"],"%H%M");
+expdelay=as.numeric(difftime(recstarttime,treatendtime,units="mins"))/60
+ofc3= cbind(ofc2[,!grepl("X",colnames(ofc2))],Age=age,ExpDelay=expdelay,stringsAsFactors=FALSE)
+#======================================================================================================
+CC = read.csv('~/DATA/AHP_HC/AHP20120826_HC_CC.csv',header=TRUE,stringsAsFactors=FALSE);
+CV = read.csv('~/DATA/AHP_HC/AHP20120826_HC_CV.csv',header=TRUE,stringsAsFactors=FALSE);
+CC=CC[,!grepl("X",colnames(CC))]
+CV=CV[,!grepl("X",colnames(CV))]
+hc = rbind(CV,CC);
+hc2 = AvgColumnByFactor(hc,"InputRes","AhpStep","avgInputRes");
+hc2 = AvgColumnByFactor(hc2,"mTau","AhpStep","avgmTau");
+hc2 = AvgColumnByFactor(hc2,"VBase","AhpStep","avgVBase");
+expdate=strptime(hc2[,"ExpDate"],"%Y%m%d");
+birthdate=strptime(hc2[,"BirthDate"],"%Y%m%d");
+age = as.numeric(difftime(expdate,birthdate,units="days"))
+treatendtime=strptime(hc2[,"TreatEndTime"],"%H%M");
+recstarttime=strptime(hc2[,"RecStartTime"],"%H%M");
+expdelay=as.numeric(difftime(recstarttime,treatendtime,units="mins"))/60
+hc3= cbind(hc2[,!grepl("X",colnames(hc2))],Age=age,ExpDelay=expdelay,stringsAsFactors=FALSE)
+#======================================================================================================
+#write.csv(ofc3,"~/DATA/AHP_OFC/AHP20120826_OFC.csv",row.names=FALSE)
+

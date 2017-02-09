@@ -1,0 +1,6 @@
+library("chron")
+as.Date(as.character(20120612),format="%Y%m%d")
+paste("a","b","c",collapse="",sep="")
+as.numeric(strptime(as.character(1050),format="%H%M")-strptime(as.character(1030),"%H%M"))
+difftime(strptime(as.character(RecTime),format="%H%M"),strptime(as.character(IncubTime),"%H%M"),units="mins")
+difftime(strptime(as.character(CC_hc[,"RecDate"]),format="%Y%m%d"),strptime(as.character(CC_hc[,"DOB"]),"%Y%m%d"),units="days")

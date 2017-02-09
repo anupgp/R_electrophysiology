@@ -1,0 +1,512 @@
+print(mxx);print(mxv);print(mnx);print(mnv)
+return(cbind(mxx,mxv,mnx,mnv))
+}
+#============================================================================
+#p = peaks(window(d[,12],0.65,1.28),100)
+p = peaks(window(d[,12],0.65,1.28),100)
+p = peaks(window(d[,1],0.65,1.28),100)
+p = peaks(window(d[,2],0.65,1.28),100)
+p = peaks(window(d[,3],0.65,1.28),100)
+p = peaks(window(d[,4],0.65,1.28),100)
+p = peaks(window(d[,5],0.65,1.28),100)
+p = peaks(window(d[,6],0.65,1.28),100)
+p = peaks(window(d[,7],0.65,1.28),100)
+start(d[,7])
+?start
+# Date: OCT102011 Time: 2000 Author: Anup G. Pillai
+# Find the maximas and minimas of the given vector v
+# Ref: The algorithm was obtained from the webpage of Eli Billauer (http://billauer.co.il/peakdet.html
+peaks = function(v,delta){
+mxv = c()
+mxx = c()
+mnv = c()
+mnx = c()
+x = 1: length(v)-1
+i=1
+lookformax = 1
+mn = +Inf; mnpos = NA
+mx = -Inf; mxpos = NA
+while(i<length(v)){
+this = v[i]
+if(this > mx ) { mx = this; mxpos = x[i]} 
+if(this < mn ) { mn = this; mnpos = x[i]}
+if(lookformax){
+if(this < mx-delta){
+mxv = append(mxv,mx,after=length(mxv))
+mxx = append(mxx,mxpos,after= length(mxx))
+mn = this; mnpos = x[i]
+lookformax = 0
+}
+}
+else{
+if(this > mn+delta){
+mnv = append(mnv,mn,after = length(mnv))
+mnx = append(mnx,mnpos,after= length(mnv))
+mx = this; mxpos = x[i]
+lookformax = 1
+}
+}
+i = i+1
+}
+if (is.null(mxx)) {mxx = c(0); mxv = c(0); mnx = c(0); mnv = c(0)}
+less = length(mxx)-length(mnx)
+print(less)
+if(less > 0){mnx=append(mnx,rep(0,less),after = length(mnx));mnv=append(mnv,rep(0,less),after=length(mnv))}
+names(mxx)=NULL; names(mxv)=NULL
+if(is.ts(v)){
+mxx = mxx*deltat(v)+ start(v)[1]* as.integer(mxx[length(mxx)]>0)
+mnx = mnx*deltat(v)+ start(v)[1]* as.integer(mnx[length(mnx)]>0)
+}
+print(c(length(mxx),length(mxv),length(mnx),length(mnv)))
+print(mxx);print(mxv);print(mnx);print(mnv)
+return(cbind(mxx,mxv,mnx,mnv))
+}
+#============================================================================
+#p = peaks(window(d[,12],0.65,1.28),100)
+p = peaks(window(d[,12],0.65,1.28),100)
+p = peaks(window(d[,1],0.65,1.28),100)
+p = peaks(window(d[,2],0.65,1.28),100)
+p = peaks(window(d[,3],0.65,1.28),100)
+p = peaks(window(d[,4],0.65,1.28),100)
+bulkprocess <- function(fnames){
+source("F:/DATA/R/R_scripts/Bulkprocess.R",echo=F)
+source("F:/DATA/R/R_scripts/Clampex.R",echo=F)
+source("F:/DATA/R/R_scripts/peakalgo_OCT102011.R",echo=F)
+source("F:/DATA/R/R_scripts/Dataframetemplates.R",echo=F)
+f.abfload = match.fun("abfload")
+f.gkernal = match.fun("gkernal")
+f.peaks = match.fun("peaks")
+f.createdf = match.fun("createdf")
+dff = f.createdf()
+pstart = 0.65
+pend = 1.28
+i=1
+n = 1
+while(i<=length(fnames)){
+dd = f.abfload(fnames[i],path=dirname(fnames[i]),"10 Vm")
+j =1
+while(j<=dim(dd)[2]){
+dff[n,"filename"] = basename(fnames[i])
+dff[n, "traceid"] = j
+d = dd[,j]
+d1 = SMA(d,25)
+d1[is.na(d1)] = d[is.na(d1)]
+d1 = ts(d1,start=0,deltat = deltat(d))
+d2 = filter(d1,gkernal(500))
+d2[is.na(d2)] = d1[is.na(d2)]
+d2 = ts(d2,start=0,deltat = deltat(d1))
+if(length(d)!=length(d1) || length(d)!=length(d2)|| length(d1)!=length(d2)){
+break;
+print("sorry length of one or more time series are not equal")
+}
+aps = f.peaks(window(d1,pstart,pend),delta=100)
+dff[n,grep("peakx",names(dff))][1:dim(aps)[1]] = aps[,1]
+dff[n,grep("peaky",names(dff))][1:dim(aps)[1]] = aps[,2]
+#------------------------
+dff[n,grep("dipx",names(dff))][1:dim(aps)[1]] = aps[,3]
+dff[n,grep("dipy",names(dff))][1:dim(aps)[1]] = aps[,4]
+#------------------------
+dff = rbind(dff,f.createdf())
+j = j+1
+n = n+1
+}
+i=i+1
+}
+ rm(list = c("f.peaks","f.abfload","f.gkernal","f.createdf"))
+return(dff)
+}
+dff = bulkprocess(traces[1])
+edit(dff)
+dff[1,"peak"]
+dff[1,"peak.1"]
+dff[1,"peak.2"]
+dff[1,"peakx.2"]
+dff[4,"peakx.2"]
+dff[4,"peakx.1"]
+dff[4,"peakx"]
+dff[4,"peak"]
+p
+p[,1]
+p[,1][2]
+p[,1][>0]
+p[,1][p>0]
+p[,1][p[,1]>0]
+p[,1][p[,1]>0]
+edit(dff)
+?grep
+grepRaw(c("CC","CV"),traces)
+grepRaw("CV",traces)
+grepRaw(traces,"CV)
+grepRaw(traces,"CV")
+grepRaw(traces,"CV")
+grepRaw(c("CV","CC"),"CV")
+grep("a",c("ab","abc","b","c","abcd"),ignore.case=F)
+grep("a",c("ab","abc","b","c","abcd"),ignore.case=F,value=F)
+grep("a",c("ab","abc","b","c","abcd"),ignore.case=F,value=T)
+grep("a",c("ab","abc","b","c","abcd"),ignore.case=F,value=F)
+grep("ab",c("ab","abc","b","c","abcd"),ignore.case=F,value=F)
+grep("ab+d",c("ab","abc","b","c","abcd"),ignore.case=F,value=F)
+grep("ab+c",c("ab","abc","b","c","abcd"),ignore.case=F,value=F)
+grep("abc",c("ab","abc","b","c","abcd"),ignore.case=F,value=F)
+?regexp
+grep("ab"+"c",c("ab","abc","b","c","abcd"),ignore.case=F,value=F)
+grep("abc",c("ab","abc","b","c","abcd"),ignore.case=F,value=F)
+grep("ab"+"c",c("ab","abc","b","c","abcd"),ignore.case=F,value=F)
+grep(("ab"+"c"),c("ab","abc","b","c","abcd"),ignore.case=F,value=F)
+grep("abc",c("ab","abc","b","c","abcd"),ignore.case=F,value=F)
+grep("AUG092011_C3_CV",c("CV","CC"),ignore.case=F,value=F)
+grep("AUG092011_C3_CV.abf",c("CV","CC"),ignore.case=F,value=F)
+grep("CV.abf",c("CV","CC"),ignore.case=F,value=F)
+grep("CV",c("CV","CC"),ignore.case=F,value=F)
+grep("CC",c("CV","CC"),ignore.case=F,value=F)
+grep("[:_:",c("CV","CC"),ignore.case=F,value=T)
+grep("[:_:]",c("CV","CC"),ignore.case=F,value=T)
+grep("*[:_:]*",c("CV","CC"),ignore.case=F,value=T)
+grep("*[:_:]*","",ignore.case=F,value=T)
+grep("*[:_:]*","AUG092011_C3_CV",ignore.case=F,value=T)
+grep("[:_:]","AUG092011_C3_CV",ignore.case=F,value=T)
+grep("[:_:]","AUG092011_C3_CV",ignore.case=F,value=F)
+grep("[:_:]","AUG092011_C3_CV",ignore.case=F,value=T)
+grep("[:_:]?","AUG092011_C3_CV",ignore.case=F,value=T)
+grep("[:_:]??","AUG092011_C3_CV",ignore.case=F,value=T)
+?match
+letters
+sstr[sstr %in% c(letters, LETTERS)]c("c","ab","B","bba","c",NA,"@","bla","a","Ba","%")c("c","ab","B","bba","c",NA,"@","bla","a","Ba","%")
+sstr <- c("c","ab","B","bba","c",NA,"@","bla","a","Ba","%")
+sstr[sstr %in% c(letters, LETTERS)]
+rm(sstr)
+charmatch("AUG092011_C3_CV",c("CV" "CC"))
+charmatch("AUG092011_C3_CV",c("CV" "CC"))
+charmatch("AUG092011_C3_CV", c("CV" "CC"))
+charmatch("AUG092011_C3_CV", c("CC"))
+charmatch("AUG092011_C3_CV", c("CC","VB"))
+charmatch("AUG092011_C3_CV", c("CC","CV"))
+charmatch("AUG092011_C3_CV", c("CV","CC"))
+pmatch("AUG092011_C3_CV", c("CV","CC"))
+pmatch("AUG092011_C3_CV_", c("CV","CC"))
+pmatch(c("AUG092011_C3_CV"), c("CV","CC"))
+charmatch(c("AUG092011_C3_CV"), c("CV","CC"))
+?strsplt
+apropos("str")
+?substr
+strsplit("AUG092011_C3_CV","CV")
+strsplit("AUG092011_C3_CV.abf","CV")
+strsplit("AUG092011_C3_CV.abf",c("CV","CC"))
+strsplit("AUG092011_C3_CC.abf",c("CV","CC"))
+strsplit("AUG092011_C3_CV.abf",c("CV","CC"))
+ls()
+plot(d15sf)
+plot(windoe(d15sf,1.3,9)
+)
+plot(window(d15sf,1.3,9))
+?time
+min(window(d15sf,1.3,9))
+window(d15sf,1.3,9)[<=-877.1848]
+window(d15sf,1.3,9)[ <= -877.1848]
+window(d15sf,1.3,9)[ =< -877.1848]
+window(d15sf,1.3,9)[ < -877.1848]
+window(d15sf,1.3,9)[window(d15sf,1.3,9)< -877.1848]
+window(d15sf,1.3,9)[window(d15sf,1.3,9)<= -877.1848]
+window(d15sf,1.3,9)[window(d15sf,1.3,9)<= -877]
+window(d15sf,1.3,9)[window(d15sf,1.3,9)<= -877.18]
+peaks(window(d15sf,1.3,9),10)
+edit(dff)
+spkt = dff[1,dff[1,grep("peakx",names(dff))]
+]
+spkt = dff[1,grep("peakx",names(dff))]
+spkt
+spkt = dff[7,grep("peakx",names(dff))]
+spkt
+plot(spkt)
+plot(spkt)
+plot(spkt[1:10])
+spkt = as.vector(dff[7,grep("peakx",names(dff))])
+spkkt
+spkt
+plot(spkt)
+spkt = as.c(dff[7,grep("peakx",names(dff))])
+spkt = as.arry(dff[7,grep("peakx",names(dff))])
+spkt = as.array(dff[7,grep("peakx",names(dff))])
+spkt = as.integer(dff[7,grep("peakx",names(dff))])
+spkt
+spkt = as.numeric(dff[7,grep("peakx",names(dff))])
+spkt
+plot(spkt)
+spks = as.numeric(dff[7,grep("peaky",names(dff))])
+plot(spks~spkt)
+spks
+plot(spks)
+plot(spkt)
+plot(spkt~spks)
+plot(spks)
+plot(spkt)
+plot(spkt~spks)
+plot(spks~spkt)
+plot(spks[spks>0]~spkt[spkt>0])
+d = abfload("F:/Test_AHP/AUG092011_C3.abf","F:/DATA/Test_AHP","10 Vm")
+d = abfload("F:/Test_AHP/AUG092011_C3.abf","F:/DATA/Test_AHP/","10 Vm")
+d = abfload("F:/Test_AHP/AUG092011_C3.abf","F:/Test_AHP/","10 Vm")
+d = abfload("F:/Test_AHP/AUG092011_C3_CV.abf","F:/Test_AHP/","10 Vm")
+plot(d[,7],xlim=c(0.65,1.3))
+lines(spks[spks>0]~spkt[spkt>0],type="o",col="red")
+plot(d[,7])
+lines(spks[spks>0]~spkt[spkt>0],type="o",col="red")
+plot(d[,7])
+plot(d[,7],xlim=c(0.65,1.3))
+lines(spks[spks>0]~spkt[spkt>0]+0.65,type="o",col="red")
+lines(spks[spks>0]~(spkt[spkt>0]+0.65),type="o",col="red")
+spkt = spkt+0.65
+lines(spks[spks>0]~(spkt[spkt>0]),type="o",col="red")
+lines(spks[spks>0.65]~spkt[spkt>0.65],type="o",col="red")
+plot(d[,7],xlim=c(0.65,1.3))
+lines(spks[spks>0.65]~spkt[spkt>0.65],type="p",col="red")
+plot(d[,7],xlim=c(0.65,1.3),ylim=c(0,600))
+plot(d[,7],xlim=c(0.65,1.3),ylim=c(400,600))
+plot(d[,7],xlim=c(0.65,1.3),ylim=c(400,800))
+plot(d[,7],xlim=c(0.65,1.3),ylim=c(600,800))
+plot(d[,7],xlim=c(0.65,1.3),ylim=c(500,800))
+lines(spks[spks>0.65]~spkt[spkt>0.65],type="o",col="red")
+#==========================================================================
+bulkprocess <- function(fnames){
+source("F:/DATA/R/R_scripts/Bulkprocess.R",echo=F)
+source("F:/DATA/R/R_scripts/Clampex.R",echo=F)
+source("F:/DATA/R/R_scripts/peakalgo_OCT102011.R",echo=F)
+source("F:/DATA/R/R_scripts/Dataframetemplates.R",echo=F)
+f.abfload = match.fun("abfload")
+f.gkernal = match.fun("gkernal")
+f.peaks = match.fun("peaks")
+f.createdf = match.fun("createdf")
+dff = f.createdf()
+pstart = 0.65
+pend = 1.28
+i=1
+n = 1
+while(i<=length(fnames)){
+dd = f.abfload(fnames[i],path=dirname(fnames[i]),"10 Vm")
+j =1
+while(j<=dim(dd)[2]){
+dff[n,"filename"] = basename(fnames[i])
+dff[n, "traceid"] = j
+#                 ----------------------- 
+dff[n,"group"]  = 
+d = dd[,j]
+d1 = SMA(d,25)
+d1[is.na(d1)] = d[is.na(d1)]
+d1 = ts(d1,start=0,deltat = deltat(d))
+d2 = filter(d1,gkernal(500))
+d2[is.na(d2)] = d1[is.na(d2)]
+d2 = ts(d2,start=0,deltat = deltat(d1))
+if(length(d)!=length(d1) || length(d)!=length(d2)|| length(d1)!=length(d2)){
+break;
+print("sorry length of one or more time series are not equal")
+}
+aps = f.peaks(window(d,pstart,pend),delta=100)
+aps[,1][aps>0] = aps[,1]+start
+aps[,3][aps>0] = aps[,3]+start
+dff[n,grep("peakx",names(dff))][1:dim(aps)[1]] = aps[,1]
+dff[n,grep("peaky",names(dff))][1:dim(aps)[1]] = aps[,2]
+dff[n,"peak"] = length(aps[,2][aps[,2]>0])
+#------------------------
+dff[n,grep("dipx",names(dff))][1:dim(aps)[1]] = aps[,3]
+dff[n,grep("dipy",names(dff))][1:dim(aps)[1]] = aps[,4]
+dff[n,"dip"] = length(aps[,4][aps[,4]>0])
+#------------------------
+dff = rbind(dff,f.createdf())
+j = j+1
+n = n+1
+}
+i=i+1
+}
+ rm(list = c("f.peaks","f.abfload","f.gkernal","f.createdf"))
+return(dff)
+}
+#============================================================================================
+dff = bulkprocess(traces[1])
+dff = bulkprocess(traces[1])
+#==========================================================================
+bulkprocess <- function(fnames){
+source("F:/DATA/R/R_scripts/Clampex.R",echo=F)
+source("F:/DATA/R/R_scripts/peakalgo_OCT102011.R",echo=F)
+source("F:/DATA/R/R_scripts/Dataframetemplates.R",echo=F)
+f.abfload = match.fun("abfload")
+f.gkernal = match.fun("gkernal")
+f.peaks = match.fun("peaks")
+f.createdf = match.fun("createdf")
+dff = f.createdf()
+pstart = 0.65
+pend = 1.28
+i=1
+n = 1
+while(i<=length(fnames)){
+dd = f.abfload(fnames[i],path=dirname(fnames[i]),"10 Vm")
+j =1
+while(j<=dim(dd)[2]){
+dff[n,"filename"] = basename(fnames[i])
+dff[n, "traceid"] = j
+#                 ----------------------- 
+#dff[n,"group"]  = 
+d = dd[,j]
+d1 = SMA(d,25)
+d1[is.na(d1)] = d[is.na(d1)]
+d1 = ts(d1,start=0,deltat = deltat(d))
+d2 = filter(d1,gkernal(500))
+d2[is.na(d2)] = d1[is.na(d2)]
+d2 = ts(d2,start=0,deltat = deltat(d1))
+if(length(d)!=length(d1) || length(d)!=length(d2)|| length(d1)!=length(d2)){
+break;
+print("sorry length of one or more time series are not equal")
+}
+aps = f.peaks(window(d,pstart,pend),delta=100)
+aps[,1][aps>0] = aps[,1]+start
+aps[,3][aps>0] = aps[,3]+start
+dff[n,grep("peakx",names(dff))][1:dim(aps)[1]] = aps[,1]
+dff[n,grep("peaky",names(dff))][1:dim(aps)[1]] = aps[,2]
+dff[n,"peak"] = length(aps[,2][aps[,2]>0])
+#------------------------
+dff[n,grep("dipx",names(dff))][1:dim(aps)[1]] = aps[,3]
+dff[n,grep("dipy",names(dff))][1:dim(aps)[1]] = aps[,4]
+dff[n,"dip"] = length(aps[,4][aps[,4]<0])
+#------------------------
+dff = rbind(dff,f.createdf())
+j = j+1
+n = n+1
+}
+i=i+1
+}
+ rm(list = c("f.peaks","f.abfload","f.gkernal","f.createdf"))
+return(dff)
+}
+#============================================================================================
+dff = bulkprocess(traces[1])
+p
+p[,1][p[,1]>0] = p[,1]+0.65
+p
+p[,3][p[,3]>0] = p[,3]+0.65
+p
+p[,3][p[,3]>0] = p[,3]+0.65p[,3][p[,3]>0]
+p[,3][p[,3]>0] = p[,3]+0.65p[,3][p[,3]>0]
+p[,3][p[,3]>0] = p[,3][p[,3]>0]+0.65
+p
+#==========================================================================
+bulkprocess <- function(fnames){
+source("F:/DATA/R/R_scripts/Clampex.R",echo=F)
+source("F:/DATA/R/R_scripts/peakalgo_OCT102011.R",echo=F)
+source("F:/DATA/R/R_scripts/Dataframetemplates.R",echo=F)
+f.abfload = match.fun("abfload")
+f.gkernal = match.fun("gkernal")
+f.peaks = match.fun("peaks")
+f.createdf = match.fun("createdf")
+dff = f.createdf()
+pstart = 0.65
+pend = 1.28
+i=1
+n = 1
+while(i<=length(fnames)){
+dd = f.abfload(fnames[i],path=dirname(fnames[i]),"10 Vm")
+j =1
+while(j<=dim(dd)[2]){
+dff[n,"filename"] = basename(fnames[i])
+dff[n, "traceid"] = j
+#                 ----------------------- 
+#dff[n,"group"]  = 
+d = dd[,j]
+d1 = SMA(d,25)
+d1[is.na(d1)] = d[is.na(d1)]
+d1 = ts(d1,start=0,deltat = deltat(d))
+d2 = filter(d1,gkernal(500))
+d2[is.na(d2)] = d1[is.na(d2)]
+d2 = ts(d2,start=0,deltat = deltat(d1))
+if(length(d)!=length(d1) || length(d)!=length(d2)|| length(d1)!=length(d2)){
+break;
+print("sorry length of one or more time series are not equal")
+}
+aps = f.peaks(window(d,pstart,pend),delta=100)
+aps[,1][aps[,1]>0] = aps[,1][aps[,1]>0]+start
+aps[,3][aps[,3]>0] = aps[,3][aps[,3]>0]+start
+dff[n,grep("peakx",names(dff))][1:dim(aps)[1]] = aps[,1]
+dff[n,grep("peaky",names(dff))][1:dim(aps)[1]] = aps[,2]
+dff[n,"peak"] = length(aps[,2][aps[,2]>0])
+#------------------------
+dff[n,grep("dipx",names(dff))][1:dim(aps)[1]] = aps[,3]
+dff[n,grep("dipy",names(dff))][1:dim(aps)[1]] = aps[,4]
+dff[n,"dip"] = length(aps[,4][aps[,4]<0])
+#------------------------
+dff = rbind(dff,f.createdf())
+j = j+1
+n = n+1
+}
+i=i+1
+}
+ rm(list = c("f.peaks","f.abfload","f.gkernal","f.createdf"))
+return(dff)
+}
+#============================================================================================
+dff = bulkprocess(traces[1])
+#==========================================================================
+bulkprocess <- function(fnames){
+source("F:/DATA/R/R_scripts/Clampex.R",echo=F)
+source("F:/DATA/R/R_scripts/peakalgo_OCT102011.R",echo=F)
+source("F:/DATA/R/R_scripts/Dataframetemplates.R",echo=F)
+f.abfload = match.fun("abfload")
+f.gkernal = match.fun("gkernal")
+f.peaks = match.fun("peaks")
+f.createdf = match.fun("createdf")
+dff = f.createdf()
+pstart = 0.65
+pend = 1.28
+i=1
+n = 1
+while(i<=length(fnames)){
+dd = f.abfload(fnames[i],path=dirname(fnames[i]),"10 Vm")
+j =1
+while(j<=dim(dd)[2]){
+dff[n,"filename"] = basename(fnames[i])
+dff[n, "traceid"] = j
+#                 ----------------------- 
+#dff[n,"group"]  = 
+d = dd[,j]
+d1 = SMA(d,25)
+d1[is.na(d1)] = d[is.na(d1)]
+d1 = ts(d1,start=0,deltat = deltat(d))
+d2 = filter(d1,gkernal(500))
+d2[is.na(d2)] = d1[is.na(d2)]
+d2 = ts(d2,start=0,deltat = deltat(d1))
+if(length(d)!=length(d1) || length(d)!=length(d2)|| length(d1)!=length(d2)){
+break;
+print("sorry length of one or more time series are not equal")
+}
+aps = f.peaks(window(d,pstart,pend),delta=100)
+aps[,1][aps[,1]>0] = aps[,1][aps[,1]>0]+pstart
+aps[,3][aps[,3]>0] = aps[,3][aps[,3]>0]+pstart
+dff[n,grep("peakx",names(dff))][1:dim(aps)[1]] = aps[,1]
+dff[n,grep("peaky",names(dff))][1:dim(aps)[1]] = aps[,2]
+dff[n,"peak"] = length(aps[,2][aps[,2]>0])
+#------------------------
+dff[n,grep("dipx",names(dff))][1:dim(aps)[1]] = aps[,3]
+dff[n,grep("dipy",names(dff))][1:dim(aps)[1]] = aps[,4]
+dff[n,"dip"] = length(aps[,4][aps[,4]<0])
+#------------------------
+dff = rbind(dff,f.createdf())
+j = j+1
+n = n+1
+}
+i=i+1
+}
+ rm(list = c("f.peaks","f.abfload","f.gkernal","f.createdf"))
+return(dff)
+}
+#============================================================================================
+dff = bulkprocess(traces[1])
+edit(dff)
+history(pattern="spk",max.show=16)
+spkt = as.numeric(dff[7,grep("peakx",names(dff))])
+spks = as.numeric(dff[7,grep("peaky",names(dff))])
+spkt
+history(pattern="plot",max.show=16)
+plot(d[,7],xlim=c(0.65,1.3))
+lines(spks[spks>0.65]~spkt[spkt>0.65],type="p",col="red")
+summary(dff)
+?match
+match("ABCDEEFGAD","C")
+?savehistory
+savehistory("F:/DATA/R/OCT192011.Rhist")

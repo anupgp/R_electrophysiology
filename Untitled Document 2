@@ -1,0 +1,8 @@
+options(contrasts=c("contr.sum", "contr.poly"))
+hc3$Filename=as.factor(hc3$Filename)
+hc$Groupname=as.factor(hc3$Groupname)
+lme_model=lme((mAhp/avgmTau) ~ Groupname*AhpStep, data=hc3, random=~1|Filename,
+              correlation=corCompSymm(form=~1|Filename))
+anova(lme_model, type="marginal")
+summary(glht(lme_model, linfct=mcp(between="Tukey")))
+

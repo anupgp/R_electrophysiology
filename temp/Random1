@@ -1,0 +1,45 @@
+gsub(pattern=".",replacement="",x=blaneurons1)
+grep("([[:digit:]]{2}) ([[:alpha:]]+) ([[:digit:]]{4})",x="blabla 23 mai 2000 blabla 18 mai 2004",value=T)
+regexpr(pattern = "([[:digit:]]{2}) ([[:alpha:]]+) ([[:digit:]]{4})", text = "blabla 23 mai 2000 blabla 18 mai 2004")
+regexp = "([.swc]{4})"
+regexp = "([\\\\]{1}([[:alnum:]]{3}[_]{1}[[:digit:]]{1}){1}.)"
+t = "C:\\DATA\\PostDoc1_Marian\\Complete_Trace_files_HRIRLR\\BLA\\Swc_BLA_B2\\MM2_1_2_BLA_40X_1.swc"
+regexpr(pattern =regexp, text=t)
+gsub(pattern=regexp,"",t)
+
+blaneurons2 = substring(bla[,"Neuron"],regexpr(pattern ="([\\\\]{1}([[:alnum:]]{3,4}[_]{1}[[:digit:]]{1}){1}.)", text=bla[,"Neuron"])+1)
+
+write.csv(bla,file="F:/DATA/PostDoc1_Marian/HRIRLR/Complete_Trace_files_HRIRLR/R_files/HRIRLR_LM_DCI_BLA.csv")
+
+names.d1 = substring(d1[,"X.Neuron."],1,regexpr(pattern ="([_]{1}[A,B]{1}[a,p]{1})", text=d1[,"X.Neuron."]))
+
+write.csv(d1,file="F:/DATA/PostDoc1_Marian/HRIRLR/Complete_Trace_files_HRIRLR/R_files/HRIRLR_LM_DCI_Apical_B2.csv")
+a1=d1[grep("Length",d1[,"Param"]),c("Neuron","Value")]
+
+write.csv(d1,file="F:/DATA/PostDoc1_Marian/HRIRLR/Complete_Trace_files_HRIRLR/CA3/CA3_B1/Basal_CA3_B1/Total_BP_HRIRLR_CA3_Basal_B1_2011.csv",header=F)
+d1 = read.delim(file="F:/DATA/PostDoc1_Marian/HRIRLR/Complete_Trace_files_HRIRLR/CA3/CA3_B1/Basal_CA3_B1/Total_BP_HRIRLR_CA3_Basal_B1_New.txt",quote="",header=F)
+lineplot.CI(x.factor=sholl_dl,response=dl,group=total_group,data=subset(dlong_all2,((sholl_dl < 300)&(pmatch("ca1",dlong_all2[,"sholl_region"]))&&(pmatch("apical",dlong_all2[,"sholl_type"])))
+aggregate(formula = cbind(t_dl,t_bp,t_branchtip,t_tiporder,t_primary,t_dci) ~ animal+group, data=d,subset = grepl("ca3",d[,"region"])& grepl("apical",d[,"type"]),FUN=mean)					
+
+#====================== CA3 region, APICAL type, 105 sholl
+
+# summary stats on animals as the exp. subjects
+a = aggregate(formula = cbind(t_dl,t_bp,t_branchtip,t_tiporder,t_primary,t_dci) ~ animal+group, data=d,subset = grepl("ca3",d[,"region"])& grepl("apical",d[,"type"])& grepl("105",d[,"sholl"]),FUN=mean,na.rm=T)
+by(a[,3:8],a[,2],mean,na.rm=T) # for mean
+by(a[,3:8],a[,2],FUN=function(x){sd(x)/sqrt(sum(x[,1]>0))}) # for standard error
+by(a[,3:8],a[,2],FUN=function(x){sum(x[,1]>0)}) # for number of animals/group
+#--------------------------------------
+# ANOVA on animals as the exp. subjects
+summary(aov(formula = cbind(t_dl,t_bp,t_branchtip,t_tiporder,t_primary,t_dci) ~ group,data=a))
+#==============================================================================================
+
+# summary stats on neurons as the exp. subjects
+a = aggregate(formula = cbind(t_dl,t_bp,t_branchtip,t_tiporder,t_primary,t_dci) ~ group, data=d,subset = grepl("ca3",d[,"region"])& grepl("apical",d[,"type"])& grepl("105",d[,"sholl"]),FUN=mean, na.rm=T) # for mean
+a = aggregate(formula = cbind(t_dl,t_bp,t_branchtip,t_tiporder,t_primary,t_dci) ~ group, data=d,subset = grepl("ca3",d[,"region"])& grepl("apical",d[,"type"])& grepl("105",d[,"sholl"]),FUN=se, na.rm=T) # for sem
+a = aggregate(formula = cbind(t_dl,t_bp,t_branchtip,t_tiporder,t_primary,t_dci) ~ group, data=d,subset = grepl("ca3",d[,"region"])& grepl("apical",d[,"type"])& grepl("105",d[,"sholl"]),FUN=function(x){sum(x>0)}) # for number of neurons/group
+#-------------------------------------
+# ANOVA on neurons as the exp. subjects
+a = d[grepl("ca3",d[,"region"])& grepl("apical",d[,"type"])& grepl("105",d[,"sholl"]),]
+summary(aov(formula = cbind(t_dl,t_bp,t_branchtip,t_tiporder,t_primary,t_dci) ~ group,data=a))
+#=============================================================================================
+

@@ -1,0 +1,512 @@
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-40,0,10,"Animal batch= 3",1.5,-30,"Rev.pot Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-40,20,10,"Animal batch= 3",1.5,-30,"Rev.pot Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-30,20,10,"Animal batch= 3",2.5,-30,"Rev.pot Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-30,20,10,"Animal batch= 3",2.5,-25,"Rev.pot Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-40,40,10,"Animal batch= 3",2.5,-25,"Rev.pot Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-30,20,10,"Animal batch= 3",2.5,-25,"Rev.pot Peak")
+
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevPeakCorBatch3.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevTailCor",-30,20,10,"Animal batch= 3",2.5,-25,"Rev.pot Tail")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevTailCorBatch3.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test
+dev.off()
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevTailCor",-40,40,10,"Animal batch= 3",2.5,-25,"Rev.pot Tail")
+test
+source("~/DATA/ELS/R/ELS_Plot_MeetingMarian.R")
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevTailCor",-40,40,10,"Animal batch= 3",2.5,-25,"Rev.pot Tail")
+test
+?position_dodge
+?position_jitter
+source("~/DATA/ELS/R/ELS_Plot_MeetingMarian.R")
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevTailCor",-40,40,10,"Animal batch= 3",2.5,-25,"Rev.pot Tail")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevTailCor",-50,50,10,"Animal batch= 3",2.5,-25,"Rev.pot Tail")
+test
+source("~/DATA/ELS/R/ELS_Plot_MeetingMarian.R")
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevTailCor",-50,50,10,"Animal batch= 3",2.5,-25,"Rev.pot Tail")
+test
+source("~/DATA/ELS/R/ELS_Plot_MeetingMarian.R")
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevTailCor",-50,50,10,"Animal batch= 3",2.5,-25,"Rev.pot Tail")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-50,50,10,"Animal batch= 3",2.5,-25,"Rev.pot Tail")
+test
+source("~/DATA/ELS/R/ELS_Plot_MeetingMarian.R")
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-50,50,10,"Animal batch= 3",2.5,-25,"Rev.pot Tail")
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-50,50,10,"Animal batch= 3",2.5,-25,"Reversal Peak (mV)")
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevPeakCorBatch3.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-20,40,10,"Animal batch= 3",2.5,-15,"Reversal Peak (mV)")
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevPeakCorBatch3.jpg",width=15,height=15,units="cm",bg="white",res=300)
+text
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevPeakCorBatch3.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-30,20,10,"Animal batch= 3",2.5,-25,"Reversal Peak (mV)")
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevPeakCorBatch3.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevPeakCor",-30,20,10,"Animal batch= 3",2.5,-25,"Reversal Peak (mV)")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevTailCorBatch3.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevTailCor",-30,20,10,"Animal batch= 3",2.5,-25,"Reversal Tail (mV)")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevTailCorBatch3.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","RevTailCor",-40,20,10,"Animal batch= 3",2.5,-35,"Reversal Tail (mV)")
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevPeakCor",-40,20,10,"Animal batch= 3",2.5,-35,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevPeakCor",-40,30,10,"Animal batch= 3",2.5,-35,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevPeakCor",-50,50,10,"Animal batch= 3",2.5,-35,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevTailCor",-50,50,10,"Animal batch= 3",2.5,-35,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevTailCor",-60,50,10,"Animal batch= 3",2.5,-35,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevTailCor",-55,50,10,"Animal batch= 3",2.5,-35,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevTailCor",-60,50,10,"Animal batch= 3",2.5,-35,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevTailCor",-60,30,10,"Animal batch= 3",2.5,-55,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevPeakCor",-60,30,10,"Animal batch= 3",2.5,-55,"Reversal Peak (mV)")
+test
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevPeakCorBatch4.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevPeakCor",-60,30,10,"Animal batch= 3",2.5,-55,"Reversal Peak (mV)")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevTailCorBatch4.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevTailCor",-60,30,10,"Animal batch= 3",2.5,-55,"Reversal Tail (mV)")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevPeakCorBatch4.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevPeakCor",-60,30,10,"Animal batch= 4",2.5,-55,"Reversal Peak (mV)")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevTailCorBatch4.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","RevTailCor",-60,30,10,"Animal batch= 4",2.5,-55,"Reversal Tail (mV)")
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==0,],"GroupName","RevPeakCor",-60,30,10,"Animal batch= 0",2.5,-55,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==0,],"GroupName","RevPeakCor",-60,30,10,"Animal batch= 0",1.5,-55,"Reversal Peak (mV)")
+test
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevPeakCorBatch0.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==0,],"GroupName","RevPeakCor",-60,30,10,"Animal batch= 0",1.5,-55,"Reversal Peak (mV)")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevTailCorBatch0.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==0,],"GroupName","RevTailCor",-60,30,10,"Animal batch= 0",1.5,-55,"Reversal Tail (mV)")
+test
+dev.off()
+unique(EPSC$IntSolnBatch)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==0,],"GroupName","RevPeakCor",-60,30,10,"Animal batch= 0",1.5,-55,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","RevPeakCor",-60,30,10,"Animal batch= 0",1.5,-55,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==2,],"GroupName","RevPeakCor",-60,30,10,"Animal batch= 0",1.5,-55,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","RevPeakCor",-60,30,10,"Animal batch= 0",1.5,-55,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","RevPeakCor",-60,30,10,"IntSolnBatch= 1",1.5,-55,"Reversal Peak (mV)")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","RevPeakCor",-60,30,10,"IntSolnBatch= 1",2.5,-55,"Reversal Peak (mV)")
+test
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevPeakCorIntSolnBatch1.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","RevPeakCor",-60,30,10,"IntSolnBatch= 1",2.5,-55,"Reversal Peak (mV)")
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","RevTailCor",-60,30,10,"IntSolnBatch= 1",2.5,-55,"Reversal Tail (mV)")
+test
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevTailCorIntSolnBatch1.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","RevTailCor",-60,30,10,"IntSolnBatch= 1",2.5,-55,"Reversal Tail (mV)")
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==2,],"GroupName","RevPeakCor",-60,30,10,"IntSolnBatch= 2",2.5,-55,"Reversal Peak (mV)")
+test
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevPeakCorIntSolnBatch2.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==2,],"GroupName","RevPeakCor",-60,30,10,"IntSolnBatch= 2",2.5,-55,"Reversal Peak (mV)")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/RevTailCorIntSolnBatch2.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==2,],"GroupName","RevTailCor",-60,30,10,"IntSolnBatch= 2",2.5,-55,"Reversal Tail (mV)")
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","NARatioPeak",0,-1,-0.25,"IntSolnBatch= 1",2.5,-1,"NMDA/AMPA Ratio")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","NARatioPeak",0,-1,-0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio")
+test
+jpeg("~/DATA/ELS/PlotsMeetingMarian/NARatioPeakIntSolnBatch1.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","NARatioPeak",0,-1,-0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio")
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==2,],"GroupName","NARatioPeak",0,-1,-0.25,"IntSolnBatch= 2",2.5,-0.9,"NMDA/AMPA Ratio")
+test
+jpeg("~/DATA/ELS/PlotsMeetingMarian/NARatioPeakIntSolnBatch2.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==2,],"GroupName","NARatioPeak",0,-1,-0.25,"IntSolnBatch= 2",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==1,],"GroupName","NARatioPeak",0,-1,-0.25,"AnimalBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==1,],"GroupName","NARatioPeak",0,-1.5,-0.25,"AnimalBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==1,],"GroupName","NARatioPeak",0,-1.25,-0.25,"AnimalBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+jpeg("~/DATA/ELS/PlotsMeetingMarian/NARatioPeakAnimalBatch1.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==1,],"GroupName","NARatioPeak",0,-1.25,-0.25,"AnimalBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/NARatioPeakAnimalBatch2.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==2,],"GroupName","NARatioPeak",0,-1.25,-0.25,"AnimalBatch= 2",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/NARatioPeakAnimalBatch3.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==3,],"GroupName","NARatioPeak",0,-1.25,-0.25,"AnimalBatch= 3",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/NARatioPeakAnimalBatch4.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch==4,],"GroupName","NARatioPeak",0,-1.25,-0.25,"AnimalBatch= 4",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+dev.off()
+ls()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/NARatioPeakAnimalBatch123.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AnimalBatch<4,],"GroupName","NARatioPeak",0,-1.25,-0.25,"AnimalBatch= 0123",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+dev.off()
+history(pat="source")
+history(pat="source",max.load=10)
+history(pat="source",load.max=10)
+history(pat="source",max.show=10)
+history(pat="csv",max.show=10)
+history(pat="read",max.show=10)
+history(pat="read.csv",max.show=10)
+?read.csv
+ELS=read.csv("~/DATA/ELS/ELS_CA1_MgFree_NA_Ratio.csv")
+test=barpointplot(ELS,"GroupName","CortLevel",0,150,25,"Cort levels ",2.5,145,"Corticosterone (ng/ml)")
+test
+test=barpointplot(ELS,"GroupName","CortLevel",0,100,20,"Cort levels ",2.5,95,"Corticosterone (ng/ml)")
+test
+test=barpointplot(ELS,"Invivo","CortLevel",0,100,20,"Cort levels ",1.5,95,"Corticosterone (ng/ml)")
+test
+jpeg("~/DATA/ELS/PlotsMeetingMarian/ELSCortLevel.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","NARatioPeak",0,-1.25,-0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1 & EPSC$Select==1,],"GroupName","NARatioPeak",0,-1.25,-0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","NARatioPeak",0,-1.25,-0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+jpeg("~/DATA/ELS/PlotsMeetingMarian/ELS_NARatioPeakIntSolnBatch1.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","NARatioPeak",0,-1.25,-0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/ELS_NARatioPeakIntSolnBatch2.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==2,],"GroupName","NARatioPeak",0,-1.25,-0.25,"IntSolnBatch= 2",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+dev.off()
+jpeg("~/DATA/ELS/PlotsMeetingMarian/ELS_NARatioPeakIntSolnBatch1Select1.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1 & EPSC$Select==1,],"GroupName","NARatioPeak",0,-2.25,-0.25,"IntSolnBatch= 1, Select=1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1 & EPSC$Select==1,],"GroupName","NARatioPeak",0,-2.25,-0.25,"IntSolnBatch= 1, Select=1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1 & EPSC$Select==1,],"GroupName","NARatioPeak",0,-1.25,-0.25,"IntSolnBatch= 1, Select=1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+jpeg("~/DATA/ELS/PlotsMeetingMarian/ELS_NARatioPeakIntSolnBatch1Select1.jpg",width=15,height=15,units="cm",bg="white",res=300)
+test
+dev.off()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","NARatioPeak",0,-1.25,-0.25,"IntSolnBatch= 1, Select=1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","NARatioPeak",0,-1.25,-0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1 & EPSC$AnimalAlone=0,],"GroupName","NARatioPeak",0,-1.25,-0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1 & EPSC$AnimalAlone==0,],"GroupName","NARatioPeak",0,-1.25,-0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","NARatioPeak",0,-1.25,-0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+ls()
+names(EPSC)
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","AvgTauTailPre40",0,-1.25,-0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","AvgTauTailPre40",0,100,25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","AvgTauTailPre40",0,0.100,0.25,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","AvgTauTailPre40",0,0.100,0.025,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,],"GroupName","AvgTauTailPre40",0,0.200,0.05,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0,],"GroupName","AvgTauTailPre40",0,0.200,0.05,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0,],"GroupName","AvgTauTailPre40",0,0.500,0.1,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0,],"GroupName","AvgTauPeakPre40",0,0.500,0.1,"IntSolnBatch= 1",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0,],"GroupName","AvgTauPeakPre40",0,0.500,0.1,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+qplot(NARatioPeak,AvgTauPeakPre40,color="GroupName",data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgTauPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0,])
+test=barpointplot(EPSC[EPSC$Time==0 & AvgTauPeak>0.03,],"GroupName","NARatioPeak",0,0.500,0.1,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03,],"GroupName","NARatioPeak",0,0.500,0.1,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03,],"GroupName","NARatioPeak",0,-1.25,0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03,],"GroupName","NARatioPeak",0,-1.25,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04,],"GroupName","NARatioPeak",0,-1.25,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.05,],"GroupName","NARatioPeak",0,-1.25,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04,],"GroupName","NARatioPeak",0,-1.25,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$Select==1,],"GroupName","NARatioPeak",0,-1.25,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSCRevPeakCor>-30,],"GroupName","NARatioPeak",0,-1.25,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$RevPeakCor>-30,],"GroupName","NARatioPeak",0,-1.25,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$RevPeakCor>-30,],"GroupName","NARatioPeak",0,-1.25,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.02 & EPSC$RevPeakCor>-30,],"GroupName","NARatioPeak",0,-1.25,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$RevPeakCor>-30,],"GroupName","NARatioPeak",0,-1.25,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$RevPeakCor>-35,],"GroupName","NARatioPeak",0,-1.25,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$RevPeakCor>-35,],"GroupName","NARatioPeak",0,-1.5,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$RevPeakCor>-20,],"GroupName","NARatioPeak",0,-1.5,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$RevPeakCor<30,],"GroupName","NARatioPeak",0,-1.5,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$RevPeakCor<30,],"GroupName","NARatioPeak",0,-1.5,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+sdev(c(1,2))
+sd(c(1,2))
+sd(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$RevPeakCor<30,"NARatioPeak"])
+sd(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$RevPeakCor<30,"NARatioPeak"],na.rm=T)
+sd(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$RevPeakCor<30,"NARatioPeak"],na.rm=T)*2
+mean(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$RevPeakCor<30,"NARatioPeak"],na.rm=T)
+-0.2499825+(0.166756)*2
+
+sd(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$GroupName=="CTRL+VEH" &  EPSC$RevPeakCor<30,"NARatioPeak"],na.rm=T)*2
+mean(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$GroupName=="CTRL+VEH" &  EPSC$RevPeakCor<30,"NARatioPeak"],na.rm=T)*2
+mean(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$GroupName=="CTRL+VEH" &  EPSC$RevPeakCor<30,"NARatioPeak"],na.rm=T)
+sd(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$GroupName=="CTRL+VEH" &  EPSC$RevPeakCor<30,"NARatioPeak"],na.rm=T)
+-0.25-2*1.48
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30,],"GroupName","NARatioPeak",0,-1.5,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30,])
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30,]))
+summary(lm(NARatioArea ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$RevPeakCor<20 & EPSC$RevPeakCor>-20,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.02 & EPSC$RevPeakCor<35 & EPSC$RevPeakCor>-35,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$RevPeakCor<35 & EPSC$RevPeakCor>-35,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$RevTailCor<35 & EPSC$RevTailCor>-35,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$RevTailCor<40 & EPSC$RevTailCor>-40,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$IntSolBatch==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$IntSolnBatch==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$IntSolnBatch==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.03 & EPSC$IntSolnBatch==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.05 & EPSC$IntSolnBatch==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$AvgTauPeakPre40>0.04 & EPSC$IntSolnBatch==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 &  EPSC$IntSolnBatch==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$RevPeakCor<20 & EPSC$RevPeakCor>-20,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$Select==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$Select==1 & EPSC$IntSolnBatch==1,]))
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$Select==1 & EPSC$IntSolnBatch==1,],"GroupName","NARatioPeak",0,-1.5,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$Select==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$Select==1 & EPSC$IntSolnBatch==1,]))
+unique(EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$Select==1 & EPSC$IntSolnBatch==1,"NARatioPeak"])
+unique(EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$GroupName="CTRL+VEH" & EPSC$Select==1 & EPSC$IntSolnBatch==1,"NARatioPeak"])
+unique(EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$GroupName=="CTRL+VEH" & EPSC$Select==1 & EPSC$IntSolnBatch==1,"NARatioPeak"])
+unique(EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$GroupName=="CTRL+CORT" & EPSC$Select==1 & EPSC$IntSolnBatch==1,"NARatioPeak"])
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$Select==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$Select==1 ,]))
+unique(EPSC[EPSC$Time==0 &  EPSC$GroupName="CTRL+VEH" & EPSC$Select==1 & EPSC$IntSolnBatch==1,"NARatioPeak"])
+unique(EPSC[EPSC$Time==0 & EPSC$GroupName=="CTRL+VEH" & EPSC$Select==1 & EPSC$IntSolnBatch==1,"NARatioPeak"])
+unique(EPSC[EPSC$Time==0 & EPSC$GroupName=="CTRL+CORT" & EPSC$Select==1 & EPSC$IntSolnBatch==1,"NARatioPeak"])
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$Select==1 & EPSC$IntSolnBatch==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$Select==1 & EPSC$IntSolnBatch==1 & EPSC$AnimalAlone==0,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$Select==1 & EPSC$IntSolnBatch==1 & EPSC$AnimalAlone<=1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$Select==1 & EPSC$IntSolnBatch==1 & EPSC$AnimalAlone<1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$Select==1 & EPSC$IntSolnBatch==1,]))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$Select==1 & EPSC$AnimalBatch<=3,]))
+names(EPSC)
+test=barpointplot(EPSC[EPSC$Time==0,],"GroupName","TauMem",0,-1.5,-0.25,"Int",2.5,-0.9,"*")
+test
+test=barpointplot(EPSC[EPSC$Time==0,],"GroupName","TauMem",0,0.25,0.025,"Int",2.5,-0.9,"*")
+test
+test=barpointplot(EPSC[EPSC$Time==0,],"GroupName","AvgMemCap",0,0.25,0.025,"Int",2.5,-0.9,"*")
+test
+test=barpointplot(EPSC[EPSC$Time==0,],"GroupName","AvgMemCap",0,25,0.25,"Int",2.5,-0.9,"*")
+test
+test=barpointplot(EPSC[EPSC$Time==0,],"GroupName","AvgMemCap",0,200,50,"Int",2.5,-0.9,"*")
+test
+test=barpointplot(EPSC[EPSC$Time==0,],"GroupName","AvgMemCap",0,500,100,"Int",2.5,-0.9,"*")
+test
+test=barpointplot(EPSC[EPSC$Time==0,],"GroupName","AvgInputRes",0,500,100,"Int",2.5,-0.9,"*")
+test
+qplot(NARatioPeak,AvgMemCap,color="GroupName",data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgMemCap,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgInputRes,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgTauPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgPeakTail40,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgTailPre40,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,Age,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,RevPeakCor,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,RevTailCor,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,LTPPeak,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,ExpDelay,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(LTPPeak,ExpDelay,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,ExpDelay,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,RecTime,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,Noise,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,KConc,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgSeriesRes,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AnimalAlone,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgRiseTimePre40,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgRiseTimePre70,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgTauPre70,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgPeakTauPre70,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgTauPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0,])
+qplot(NARatioPeak,AvgTauPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0,],size=2)
+qplot(NARatioPeak,AvgTauPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0,],size=3)
+qplot(NARatioPeak,AvgTauPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0,],size=4)
+qplot(NARatioPeak,AvgTauPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0,],size=10)
+qplot(NARatioPeak,AvgTauPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0,],size=0)
+?gplor
+?gplot
+?qplot
+qplot(NARatioPeak,AvgTauPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioArea)
+qplot(NARatioPeak,AvgTauPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioPeak)
+qplot(RevPeakCor,RevTailCor,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioPeak)
+qplot(NARatioPeak,Age,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioPeak)
+qplot(NARatioPeak,AvgPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioPeak)
+qplot(NARatioPeak,AvgPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioPeak)
+source("~/DATA/ELS/R/ELS_Make.R")
+qplot(NARatioPeak,AvgPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioPeak)
+qplot(NARatioPeak,AvgTailPre40,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioPeak)
+qplot(NARatioPeak,AvgAreaTailPre40,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioPeak)
+qplot(NARatioPeak,AvgAreaPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioPeak)
+qplot(NARatioPeak,AvgPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioPeak)
+qplot(NARatioPeak,AvgPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0,],size=-NARatioPeak)
+qplot(NARatioPeak,AvgPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0,],size=abs(NARatioPeak))
+qplot(NARatioPeak,AvgPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0,],size=abs(NARatioPeak)*2)
+qplot(NARatioPeak,AvgPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0,],size=2)
+qplot(NARatioPeak,RecTime,color=GroupName,data=EPSC[EPSC$Time==0,],size=2)
+qplot(NARatioPeak,ExpDate,color=GroupName,data=EPSC[EPSC$Time==0,],size=2)
+qplot(NARatioPeak,ExpDate,color=GroupName,data=EPSC[EPSC$Time==0,],size=AnimalBatch)
+qplot(NARatioPeak,ExpDate,color=GroupName,data=EPSC[EPSC$Time==0,],size=AnimalBatch*3)
+qplot(NARatioPeak,ExpDate,color=GroupName,data=EPSC[EPSC$Time==0,],shape=AnimalBatch)
+qplot(NARatioPeak,ExpDate,color=GroupName,data=EPSC[EPSC$Time==0,],shape=as.factor(AnimalBatch))
+qplot(NARatioPeak,ExpDate,color=GroupName,data=EPSC[EPSC$Time==0,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,Age,color=GroupName,data=EPSC[EPSC$Time==0,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,ExpTime,color=GroupName,data=EPSC[EPSC$Time==0,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,RecTime,color=GroupName,data=EPSC[EPSC$Time==0,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,AvgPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,AvgPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0 & EPSC$NARatio<-1,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,AvgPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0 & EPSC$NARatioPeak<-1,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,AvgPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0 & EPSC$NARatioPeak<= -1,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,AvgPeakPre70,color=GroupName,data=EPSC[EPSC$Time==0 & EPSC$NARatioPeak>= -1,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,AvgPeakPre40,color=GroupName,data=EPSC[EPSC$Time==0 & EPSC$NARatioPeak>= -1,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,AvgTailPre40,color=GroupName,data=EPSC[EPSC$Time==0 & EPSC$NARatioPeak>= -1,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,AvgSeriesRes,color=GroupName,data=EPSC[EPSC$Time==0 & EPSC$NARatioPeak>= -1,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,AvgInputRes,color=GroupName,data=EPSC[EPSC$Time==0 & EPSC$NARatioPeak>= -1,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,AvgMemCap,color=GroupName,data=EPSC[EPSC$Time==0 & EPSC$NARatioPeak>= -1,],shape=as.factor(AnimalBatch),size=2)
+qplot(RevPeakCor,RevTailCor,color=GroupName,data=EPSC[EPSC$Time==0,],size=NARatioPeak)
+qplot(NARatioPeak,RevPeakCor,color=GroupName,data=EPSC[EPSC$Time==0 & EPSC$NARatioPeak>= -1,],shape=as.factor(AnimalBatch),size=2)
+qplot(NARatioPeak,RevTailCor,color=GroupName,data=EPSC[EPSC$Time==0 & EPSC$NARatioPeak>= -1,],shape=as.factor(AnimalBatch),size=2)
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=ELSbig))
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$Select==1,]))
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30,],"GroupName","NARatioPeak",0,-1.5,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+source("~/DATA/ELS/R/ELS_Plot_MeetingMarian.R")
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30,],"GroupName","NARatioPeak",0,-1.5,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$RevPeakCor<25 & EPSC$RevPeakCor>-25,],"GroupName","NARatioPeak",0,-1,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$RevPeakCor<25 & EPSC$RevPeakCor>-25 & EPSC$NARatioPeak>-1.4,],"GroupName","NARatioPeak",0,-1,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$RevPeakCor<30 & EPSC$RevPeakCor>-30 & EPSC$NARatioPeak>-1.4,],"GroupName","NARatioPeak",0,-1,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+history(pat="read.csv",max.show=10)
+ELS=read.csv("~/DATA/ELS/ELS_CA1_MgFree_NA_Ratio.csv")
+test=barpointplot(ELS,"GroupName","NARatioPeak",0,-1,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(ELS,"GroupName","NARatioPeak",0,1,0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+ELS$GroupName = reorder(ELS$GroupName, new.order = c("CTRL+VEH","CTRL+CORT","ELS+VEH","ELS+CORT"));
+test=barpointplot(ELS,"GroupName","NARatioPeak",0,1,0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+t.test(NARatioPeak ~ Exvivo, data=ELS[ELS$Invivo=="ELS",])
+0.004*6
+x11()
+test=barpointplot(EPSC[EPSC$Time==0 & EPSC$NARatioPeak>-1.4,],"GroupName","NARatioPeak",0,-1,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+ELSbig = rbind(EPSC,ELS)
+ELSbig = rbind(EPSC[,c("CellID","GroupName","NARatioPeak"),ELS)
+ELSbig = rbind(EPSC[,c("CellID","GroupName","NARatioPeak")],ELS)
+names(ELS)
+ELSbig = rbind(EPSC[,c("CellID","GroupName","NARatioPeak")],ELS[,c("CellID","GroupName","NARatioPeak")])
+View(ELSbig)
+ELSbig = rbind(EPSC[EPSC$Time==0,c("CellID","GroupName","NARatioPeak")],ELS[,c("CellID","GroupName","NARatioPeak")])
+View(ELSbig)
+ELSbig = rbind(EPSC[EPSC$Time==0 & EPSC$NARatioPeak>-1.4,c("CellID","GroupName","NARatioPeak")],ELS[,c("CellID","GroupName","NARatioPeak")])
+View(ELSbig)
+X11()
+test=barpointplot(ELSbig,"GroupName","NARatioPeak",0,-1,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+EPSC$NARatioPeak=-EPSC$NARatioPeak
+ELSbig = rbind(EPSC[EPSC$Time==0 & EPSC$NARatioPeak>-1.4,c("CellID","GroupName","NARatioPeak")],ELS[,c("CellID","GroupName","NARatioPeak")])
+test=barpointplot(ELSbig,"GroupName","NARatioPeak",0,-1,-0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+test=barpointplot(ELSbig,"GroupName","NARatioPeak",0,1,0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+EPSC$NARatioPeak=abs(EPSC$NARatioPeak)
+ELSbig = rbind(EPSC[EPSC$Time==0 & EPSC$NARatioPeak>1.3,c("CellID","GroupName","NARatioPeak")],ELS[,c("CellID","GroupName","NARatioPeak")])
+test=barpointplot(ELSbig,"GroupName","NARatioPeak",0,1,0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+ELS=read.csv("~/DATA/ELS/ELS_CA1_MgFree_NA_Ratio.csv")
+Source("~/DATA/ELS/R/ELS_Main.R")
+source("~/DATA/ELS/R/ELS_Main.R")
+EPSC$NARatioPeak=abs(EPSC$NARatioPeak)
+ELSbig = rbind(EPSC[EPSC$Time==0 & EPSC$NARatioPeak<1.4,c("CellID","GroupName","NARatioPeak")],ELS[,c("CellID","GroupName","NARatioPeak")])
+ELS=read.csv("~/DATA/ELS/ELS_CA1_MgFree_NA_Ratio.csv")
+ELSbig = rbind(EPSC[EPSC$Time==0 & EPSC$NARatioPeak<1.4,c("CellID","GroupName","NARatioPeak")],ELS[,c("CellID","GroupName","NARatioPeak")])
+test=barpointplot(ELSbig,"GroupName","NARatioPeak",0,1,0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+history(pat="source",max.show=10)
+source("~/DATA/ELS/R/ELS_Plot_MeetingMarian.R")
+test=barpointplot(ELSbig,"GroupName","NARatioPeak",0,1,0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+ELSbig = rbind(EPSC[EPSC$Time==0 & EPSC$NARatioPeak<1.4,c("CellID","GroupName","NARatioPeak","Exvivo","Invivo")],ELS[,c("CellID","GroupName","NARatioPeak","Invivo","Exvivo")])
+summary(lm(NARatioPeak ~ Invivo*Exvivo,data=ELSbig))
+t.test(NARatioPeak ~ Exvivo,data=ELSbig[ELSbig$Invivo="ELS",])
+t.test(NARatioPeak ~ Exvivo,data=ELSbig[ELSbig$Invivo=="ELS",])
+x11()
+test=barpointplot(ELS,"GroupName","NARatioPeak",0,1,0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+ELS$GroupName = reorder(ELS$GroupName, new.order = c("CTRL+VEH","CTRL+CORT","ELS+VEH","ELS+CORT"));
+test
+test=barpointplot(ELS,"GroupName","NARatioPeak",0,1,0.25,"Int",2.5,-0.9,"NMDA/AMPA Ratio Peak")
+test
+apropos("history")
+?savehistory
+savehistory("~/DATA/ELS/R/ELS_analysis_20130916.RHist")

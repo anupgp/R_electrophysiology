@@ -1,0 +1,21 @@
+AvgColumnByFactor <- function(df,columnname,factorname,newcolumnname)
+{
+	nrows = dim(df)[1];
+	ncolumns = dim(df)[2];
+	nAhplevels=nlevels(as.factor(df[,factorname]));
+	df = cbind(df,0);
+	colnames(df)[ncol(df)]=newcolumnname;
+	#print(nAhplevels);
+	#print(colnames(df));
+	for (i in seq(1,nrows,by=nAhplevels))
+	{
+		small=df[seq(i,i+nAhplevels-1,by=1),c(factorname,columnname)];
+		#print(df[seq(i,i+nAhplevels-1,by=1),newcolumnname])
+		#print(c(i,mean(small[,columnname],na.rm=T)))
+		df[seq(i,i+nAhplevels-1,by=1),newcolumnname]=mean(small[,columnname],na.rm=T);
+	#print(df[seq(i,i+nAhplevels-1,by=1),newcolumnname])
+	#print(small)
+	#readline()
+	}
+	return(df)
+}

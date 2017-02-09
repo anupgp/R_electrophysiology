@@ -1,0 +1,147 @@
+# This is for analysis and ploting of ELS data in R
+rm(list=ls())
+library("ggplot2")
+library("sciplot")
+library("stringr")
+library("plyr")
+library("gdata")
+	#----------------------- pre70
+pre70_org = read.csv('~/DATA/ELS/CSV/pre70.csv',header=TRUE,stringsAsFactors=FALSE);
+# remove the column "X"
+pre70_org=pre70_org[,colnames(pre70_org)[!grepl(colnames(pre70_org),pattern="X")]]  
+# remove suprious values by changing them to NA
+pre70 = pre70_org;
+pre70[(pre70[,"TauPeak"] > 1 | pre70[,"TauPeak"] < 0),"TauPeak"] = NA; 
+pre70[(pre70[,"TauTail"] > 1 | pre70[,"TauTail"] < 0),"TauTail"] = NA; 
+# remove the averaged sweep
+pre70 = pre70[pre70[,"Sweep"] > 0,];
+# average across sweeps	
+avgpre70=ddply(pre70, .(CellID), summarize, FileName=unique(FileName),GroupName=unique(GroupName),BrainRegion=unique(BrainRegion),
+ExpDate=unique(ExpDate), BirthDate=unique(BirthDate), TreatTime=mean(TreatTime,na.rm=T), RecTime=mean(RecTime,na.rm=T), VRest = mean(VRest,na.rm=T),
+SeriesRes = mean(SeriesRes,na.rm=T), InputRes=mean(InputRes,na.rm=T), TauMem=mean(TauMem,na.rm=T), Sweep=length(Sweep),VCLamp=mean(VClamp,na.rm=T), 
+Peak=mean(Peak,na.rm=T),RiseTime=mean(RiseTime,na.rm=T), Tail=mean(Tail,na.rm=T), AreaPeak=mean(AreaPeak,na.rm=T),AreaTail=mean(AreaTail,na.rm=T),
+TauPeak=mean(TauPeak,na.rm=T),TauTail=mean(TauTail,na.rm=T),SlopeDirect=mean(SlopeDirect,na.rm=T),SlopeFit=mean(SlopeFit,na.rm=T),Noise=mean(Noise,na.rm=T),
+StimNum=mean(StimNum,na.rm=T),StimInterval=mean(StimInterval,na.rm=T))
+# postfix colnames with pre70
+colnames(avgpre70)[2:length(colnames(avgpre70))]=paste(colnames(avgpre70),rep(".pre70",length(colnames(avgpre70))),sep="")[2:length(colnames(avgpre70))]	
+	#----------------------- pre40
+pre40_org = read.csv('~/DATA/ELS/CSV/pre40.csv',header=TRUE,stringsAsFactors=FALSE);
+# remove the column "X"
+pre40_org=pre40_org[,colnames(pre40_org)[!grepl(colnames(pre40_org),pattern="X")]]  
+# remove suprious values by changing them to NA
+pre40 = pre40_org;
+pre40[((pre40[,"TauPeak"] > 1) | pre40[,"TauPeak"] < 0),"TauPeak"] = NA; 
+pre40[((pre40[,"TauTail"] > 1) | pre40[,"TauTail"] < 0),"TauTail"] = NA; 
+# remove the averaged sweep
+pre40 = pre40[pre40[,"Sweep"] > 0,];
+# average across sweeps	
+avgpre40=ddply(pre40, .(CellID), summarize, FileName=unique(FileName),GroupName=unique(GroupName),BrainRegion=unique(BrainRegion),
+ExpDate=unique(ExpDate), BirthDate=unique(BirthDate), TreatTime=mean(TreatTime,na.rm=T), RecTime=mean(RecTime,na.rm=T), VRest = mean(VRest,na.rm=T),
+SeriesRes = mean(SeriesRes,na.rm=T), InputRes=mean(InputRes,na.rm=T), TauMem=mean(TauMem,na.rm=T), Sweep=length(Sweep),VCLamp=mean(VClamp,na.rm=T), 
+Peak=mean(Peak,na.rm=T),RiseTime=mean(RiseTime,na.rm=T), Tail=mean(Tail,na.rm=T), AreaPeak=mean(AreaPeak,na.rm=T),AreaTail=mean(AreaTail,na.rm=T),
+TauPeak=mean(TauPeak,na.rm=T),TauTail=mean(TauTail,na.rm=T),SlopeDirect=mean(SlopeDirect,na.rm=T),SlopeFit=mean(SlopeFit,na.rm=T),Noise=mean(Noise,na.rm=T),
+StimNum=mean(StimNum,na.rm=T),StimInterval=mean(StimInterval,na.rm=T))
+# postfix colnames with pre40
+colnames(avgpre40)[2:length(colnames(avgpre40))]=paste(colnames(avgpre40),rep(".pre40",length(colnames(avgpre40))),sep="")[2:length(colnames(avgpre40))]
+	#----------------------- post70
+post70_org = read.csv('~/DATA/ELS/CSV/post70.csv',header=TRUE,stringsAsFactors=FALSE);
+# remove the column "X"
+post70_org=post70_org[,colnames(post70_org)[!grepl(colnames(post70_org),pattern="X")]]  
+# remove suprious values by changing them to NA
+post70 = post70_org;
+post70[((post70[,"TauPeak"] > 1) | post70[,"TauPeak"] < 0),"TauPeak"] = NA; 
+post70[((post70[,"TauTail"] > 1) | post70[,"TauTail"] < 0),"TauTail"] = NA; 
+# average across sweeps	
+avgpost70=ddply(post70, .(CellID), summarize, FileName=unique(FileName),GroupName=unique(GroupName),BrainRegion=unique(BrainRegion),
+ExpDate=unique(ExpDate), BirthDate=unique(BirthDate), TreatTime=mean(TreatTime,na.rm=T), RecTime=mean(RecTime,na.rm=T), VRest = mean(VRest,na.rm=T),
+SeriesRes = mean(SeriesRes,na.rm=T), InputRes=mean(InputRes,na.rm=T), TauMem=mean(TauMem,na.rm=T), Sweep=length(Sweep),VCLamp=mean(VClamp,na.rm=T), 
+Peak=mean(Peak,na.rm=T),RiseTime=mean(RiseTime,na.rm=T), Tail=mean(Tail,na.rm=T), AreaPeak=mean(AreaPeak,na.rm=T),AreaTail=mean(AreaTail,na.rm=T),
+TauPeak=mean(TauPeak,na.rm=T),TauTail=mean(TauTail,na.rm=T),SlopeDirect=mean(SlopeDirect,na.rm=T),SlopeFit=mean(SlopeFit,na.rm=T),Noise=mean(Noise,na.rm=T),
+StimNum=mean(StimNum,na.rm=T),StimInterval=mean(StimInterval,na.rm=T))
+# postfix colnames with post70
+colnames(avgpost70)[2:length(colnames(avgpost70))]=paste(colnames(avgpost70),rep(".post70",length(colnames(avgpost70))),sep="")[2:length(colnames(avgpost70))]
+	#----------------------Merge pre70, pre40
+els = merge(avgpre70,avgpre40,by="CellID"); 
+	#----------------------Merge with post70
+els = merge(els,avgpost70,all.x=TRUE,by="CellID")
+
+	#---------------------Create the additional factors for two factor ANOVA
+factors=str_split_fixed(els$GroupName.pre70,"\\+",2)
+els = cbind(els,"Treat_invivo"=as.character(factors[,1]),"Treat_exvivo"=as.character(factors[,2]))
+	#----------------------Generate new variables
+els = cbind(els,"AmpRatio"=abs(els$Tail.pre40/els$Peak.pre70))
+els = cbind(els,"AreaRatio"=abs(els$AreaTail.pre40/els$AreaPeak.pre70))
+els = cbind(els,"PostPre"=abs(els$Peak.post70/els$Peak.pre70))
+expdate=strptime(els[,"ExpDate.pre70"],"%Y%m%d");
+birthdate=strptime(els[,"BirthDate.pre70"],"%Y%m%d");
+age = as.numeric(difftime(expdate,birthdate,units="days"))
+els = cbind(els,"Age"=age)
+treattime=strptime(els[,"TreatTime.pre70"],"%H%M");
+rectime=strptime(els[,"RecTime.pre70"],"%H%M");
+expdelay=as.numeric(difftime(rectime,treattime,units="mins"))/60
+els = cbind(els,"ExpDelay"=expdelay)
+#------------------------Select cells
+select = rep(1,nrow(els));
+els = cbind(els,"Select"=select)
+els[els[,"ExpDate.pre70"]>=20121123,"Select"]=0;
+els = els[els[,"Select"]==1,];
+
+#--------------------------Load IV files
+iv = read.csv('~/DATA/ELS/CSV/ELS_IV.csv',header=TRUE,stringsAsFactors=FALSE);
+	# remove the column "X"
+iv = iv[,colnames(iv)[!grepl(colnames(iv),pattern="X")]] 
+# --- New df with Peak and Tail reversal
+avgiv = ddply(iv, .(CellID), summarize, FileName=unique(FileName),GroupName=unique(GroupName),BrainRegion=unique(BrainRegion),
+	ExpDate=mean(ExpDate,na.rm=T), BirthDate=mean(BirthDate,na.rm=T), VRest = mean(VRest,na.rm=T),
+	RevPeak=mean(RevPeak,na.rm=T), RevTail=mean(RevTail,na.rm=T) )
+
+naiv = merge(els,avgiv,by="CellID")
+
+naiv$GroupName = as.factor(naiv$GroupName)
+naiv$GroupName = reorder(naiv$GroupName, new.order = c("CTRL+VEH","CTRL+CORT","ELS+VEH","ELS+CORT"))
+
+#------------------Select naiv for seperate groups to test correlation
+naiv[,"Select"] =1;
+#naiv = cbind(naiv,"Select"=select)
+#naiv[grepl(pattern="ELS",naiv[,"GroupName.pre70"]),"Select"]=1;
+#naiv[grepl(pattern="CTRL",naiv[,"GroupName.pre70"]),"Select"]=1;
+naiv = naiv[naiv[,"Select"]==1,];
+
+lfitPkrev = lm(AmpRatio~RevPeak,data=naiv)
+lfitTlrev = lm(AmpRatio~RevTail,data=naiv)
+plot.naiv.PkRev = qplot(RevPeak,AmpRatio,data=naiv)+geom_smooth(method=lm,fullrange=TRUE)+
+		layer(data=naiv,mapping=aes(x=RevPeak,y=AmpRatio,color=GroupName),size=5,geom="point")+
+		annotate(geom="text",x=11,y=1.2,label = "Adj.R-sqr = -0.1",size=5,fontface="italic",color="black",hjust=0)+
+		annotate(geom="text",x=11,y=1.13,label = "p = 0.95",size=5,fontface="italic",color="black",hjust=0)+
+		theme(axis.text.y = element_text(size=18, hjust=0.5,angle=0), axis.title.y = element_text(size=18, angle=90,vjust=0.25),
+			    axis.text.x  = element_text(angle=0, hjust=0.5, size=18,face="plain"),axis.title.x = element_text(size=18, angle=0,vjust=0.25))+
+		scale_colour_manual("Groups", breaks = levels(factor(naiv$GroupName)), values= c("darkgrey","black") )+
+		scale_x_continuous('Epsc Peak Reversal Potential (mV) ') + scale_y_continuous('Epsc Amplitude Ratio (NMDA Tail /AMPA Peak) ')+
+		theme(legend.title = element_text(colour="blue", size=16, face="bold",hjust=1))+
+		theme(legend.text = element_text(colour="black", size = 16, face = "plain"))
+plot.naiv.PkRev=plot.naiv.PkRev+theme(panel.background = element_rect(fill='white', colour='black'))
+#tiff("~/DATA/ELS/CTRL_Corr_NARatio_PeakRev",width=23,height=15,units="cm",compression=c("jpeg"),bg="white",res=300)
+                        
+plot.naiv.TlRev = qplot(RevTail,AmpRatio,data=naiv)+geom_smooth(method=lm,fullrange=TRUE)+
+		layer(data=naiv,mapping=aes(x=RevTail,y=AmpRatio,color=GroupName),size=5,geom="point")+
+		annotate(geom="text",x=5,y=1.2,label = "Adj.R-sqr = -0.08",size=5,fontface="italic",color="black",hjust=0)+
+		annotate(geom="text",x=5,y=1.13,label = "p = 0.68",size=5,fontface="italic",color="black",hjust=0)+
+		theme(axis.text.y = element_text(size=18, hjust=0.5,angle=0), axis.title.y = element_text(size=18, angle=90,vjust=0.25),
+			    axis.text.x  = element_text(angle=0, hjust=0.5, size=18,face="plain"),axis.title.x = element_text(size=18, angle=0,vjust=0.25))+
+		scale_colour_manual("Groups", breaks = levels(factor(naiv$GroupName)), values= c("darkgrey","black") )+
+		scale_x_continuous('Epsc Tail Reversal Potential (mV) ') + scale_y_continuous('Epsc Amplitude Ratio (NMDA Tail /AMPA Peak) ')+
+		theme(legend.title = element_text(colour="blue", size=16, face="bold",hjust=1))+
+		theme(legend.text = element_text(colour="black", size = 16, face = "plain"))
+plot.naiv.TlRev=plot.naiv.TlRev+theme(panel.background = element_rect(fill='white', colour='black'))
+#tiff("~/DATA/ELS/CTRL_Corr_NARatio_TailRev",width=23,height=15,units="cm",compression=c("jpeg"),bg="white",res=300)
+
+
+
+
+
+
+
+
+
+
+
